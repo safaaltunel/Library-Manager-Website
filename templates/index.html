@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class = "form">
+	<h2>Add Book</h2>
+	<form action = "/" method = "POST">
+	  <label for="isbn">ISBN:</label><br>
+	  <input type="text" id="isbn" name="isbn" value=""><br>
+	  <label for="title">Title:</label><br>
+	  <input type="text" id="title" name="title" value=""><br>
+	  <label for="author">Author:</label><br>
+	  <input type="text" id="author" name="author" value=""><br>
+	  <input type="submit" value="Add Book">
+	</form>
+</div>
+<hr>
+<div class = "form">
+	<h2>Add Borrower</h2>
+	<form action = "/" method = "POST">
+	  <label for="tc_number">TC Number:</label><br>
+	  <input type="text" id="tc_number" name="tc_number" value=""><br>
+	  <input type="submit" value="Add Borrower">
+	</form>
+</div>
+<hr>
+
+<div class = "form">
+	<h2>Search Book According to ISBN</h2>
+	<form action = "/" method = "POST">
+	  <label for="isbn">ISBN:</label><br>
+	  <input type="text" id="isbn" name="isbn" value=""><br>
+	  <input type="submit" value="Search book by isbn">
+	</form>
+</div>
+<hr>
+
+<div class = "form">
+	<h2>Search Book According to Title</h2>
+	<form action = "/" method = "POST">
+	  <label for="title">Title:</label><br>
+	  <input type="text" id="title" name="title" value=""><br>
+	  <input type="submit" value="Search book by title">
+	</form>
+</div>
+<hr>
+
+<div class = "form">
+	<h2>Search Book According to Author</h2>
+	<form action = "/" method = "POST">
+	  <label for="title">Author:</label><br>
+	  <input type="text" id="author" name="author" value=""><br>
+	  <input type="submit" value="Search book by author">
+	</form>
+</div>
+<hr>
+
+<div>
+	<h2>List Of Books</h2>
+	{% for book in books %}
+	<div>Book isbn: {{book[0]}}</div>
+	<div>Book title: {{book[1]}}</div>
+	<div>Book author: {{book[2]}}</div>
+	<div>Is borrowed: {% if book[3] == 1 %}
+						yes
+						{% else %}
+						no
+						{% endif %}
+	</div>
+	<a href="/delete/{{book[0]}}">Delete</a>
+	<a href="/borrow/{{book[0]}}">Borrow</a>
+	<hr>
+	{% endfor %}
+</div>
+<br>
+<hr>
+<div>
+	<h2>List Of Borrowers</h2>
+	{% for borrower in borrowers %}
+	<div>Borrower TC: {{borrower[0]}}</div>
+	<div>Number of books borrowed: {{borrower[1]}}</div>
+	<br>
+	{% for borrower_books in borrower_book %}
+		{% if borrower_books[0] == borrower[0] %}
+			<div>
+				<div>Book isbn: {{borrower_books[1]}}</div>
+				<div>Begin date: {{borrower_books[2]}}</div>
+				<div>End date: {{borrower_books[3]}}</div>
+			</div>
+			<br>
+		{% endif %}
+	{% endfor %}
+	<hr>
+	{% endfor %}
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block body %}
+<div>
+	<h2>Books According To Author</h2>
+	{% for book in books %}
+		<div>Book isbn: {{book[0]}}</div>
+		<div>Book title: {{book[1]}}</div>
+		<div>Book author: {{book[2]}}</div>
+		<div>Is borrowed: {% if book[3] == 1 %}
+							yes
+							{% else %}
+							no
+							{% endif %}
+		</div>
+		<a href="/delete/{{book[0]}}">Delete</a>
+		<a href="/borrow/{{book[0]}}">Borrow</a>
+		<hr>
+	{% endfor %}
+</div>
+{% endblock %}

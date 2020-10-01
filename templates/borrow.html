@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block body %}
+<div class = "form">
+	<h2>Borrow Book</h2>
+	<form action = "/borrow/{{book[0]}}" method = "POST">
+	  <label for="tc number">TC Number:</label><br>
+	  <input type="text" id="tc_number" name="tc_number" value=""><br>
+	  <input type="submit" value="Borrow Book">
+	</form>
+</div>
+{% endblock %}

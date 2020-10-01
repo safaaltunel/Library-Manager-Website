@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block body %}
+<div>
+	<h2>The Book According To ISBN</h2>
+	<div>Book ISBN: {{book[0]}}</div>
+	<div>Book Title: {{book[1]}}</div>
+	<div>Book Author: {{book[2]}}</div>
+	<div>Is borrowed: {% if book[3] == 1 %}
+							yes
+							{% else %}
+							no
+						{% endif %}
+	</div>
+	<a href="/delete/{{book[0]}}">Delete</a>
+	<a href="/borrow/{{book[0]}}">Borrow</a>
+</div>
+{% endblock %}
